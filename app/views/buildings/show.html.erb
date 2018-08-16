@@ -1,0 +1,12 @@
+<h2> <%= @building.name %> </h2>
+<p>Country: <%= @building.country %>, Address: <%= @building.address %> </p>
+<p>The following companies have offices in this building:  </p>
+<ul>
+  <% @building.offices.each do |office| %>
+  <li> <%= office.company.name %> </li>
+  <% end %>
+</ul>
+
+<p>This building is making £<%= @building.total_rent %> in rent. </p>
+
+<%= link_to "Update this building's details", edit_building_path(@building) %>

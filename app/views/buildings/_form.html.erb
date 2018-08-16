@@ -1,0 +1,30 @@
+<%= form_for @building do |f| %>
+  <% if @building.errors.any? %>
+        <h2>
+          <%= pluralize(@building.errors.count, "error") %>
+          prohibited this building's details from being updated:
+        </h2>
+        <ul>
+          <% @building.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+          <% end %>
+        </ul>
+  <% end %>
+  <h3>Building details:</h3>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :country %>
+  <%= f.text_field :country %><br>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %><br>
+
+  <%= f.label :rent_per_floor %>
+  <%= f.text_field :rent_per_floor %><br>
+
+  <%= f.label :number_of_floors %>
+  <%= f.text_field :number_of_floors %><br>
+
+  <%= f.submit %>
+<% end %>

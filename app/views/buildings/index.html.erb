@@ -1,0 +1,11 @@
+<h1>All WeWork buildings:</h1>
+<ul>
+  <% @buildings.each do |building| %>
+    <li>
+      <h3><%= link_to building.name, building_path(building) %> in <%= building.country %>, at <%= building.address %></h3> <br>
+      This building has the following floors available: <br>
+      <%= building.number_of_floors_available.join(", ") %> <br>
+
+    </li>
+  <% end %>
+</ul>
