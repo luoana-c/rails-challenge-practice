@@ -1,5 +1,7 @@
 <h1> <%= @company.name %> </h1>
 
+<%= link_to "Create a new company", new_company_path %>
+
 <h3>The total rent paid by <%= @company.name %> is: £<%= @company.total_rent %>. </h3>
 <ul>
   <h3> <%= @company.name %> has offices in the following buildings:</h3>

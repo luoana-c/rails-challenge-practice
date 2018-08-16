@@ -1,6 +1,7 @@
 class Building < ApplicationRecord
   has_many :offices
   has_many :companies, through: :offices
+  accepts_nested_attributes_for :offices
 
   validates :name, presence: true, uniqueness: true
   validates :country, presence: true
@@ -25,4 +26,6 @@ class Building < ApplicationRecord
   def total_rent
     self.rent_per_floor * self.offices.length
   end
+
+
 end
