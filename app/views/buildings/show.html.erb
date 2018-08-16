@@ -3,7 +3,7 @@
 <p>The following companies have offices in this building:  </p>
 <ul>
   <% @building.offices.each do |office| %>
-  <li> <%= office.company.name %> </li>
+  <li> <%= link_to office.company.name, company_path(office.company) %> </li>
   <% end %>
 </ul>
 

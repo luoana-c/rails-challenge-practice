@@ -1,0 +1,52 @@
+<h1> <%= @company.name %> </h1>
+
+<h3>The total rent paid by <%= @company.name %> is: £<%= @company.total_rent %>. </h3>
+<ul>
+  <h3> <%= @company.name %> has offices in the following buildings:</h3>
+    <% @company.offices.each do |office| %>
+      <li> <%= link_to office.building.name, building_path(office.building) %>, floor <%= office.floor %> </li>
+    <% end %>
+</ul>
+
+
+
+<ul>
+  <h3> <%= @company.name %> has the following employees:</h3>
+  <% @company.employees.each do |employee| %>
+    <li> <%= employee.name %> | <%= employee.title %> </li>
+  <% end %>
+</ul>
+
+<%= form_for @company do |f| %>
+  <% if @company.errors.any? %>
+        <h2>
+          <%= pluralize(@company.errors.count, "error") %>
+          prohibited this building's details from being updated:
+        </h2>
+        <ul>
+          <% @company.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+          <% end %>
+        </ul>
+  <% end %>
+
+  <% if @company.employees.build.errors.any? %>
+        <h2>
+          <%= pluralize(@building.errors.count, "error") %>
+          prohibited this building's details from being updated:
+        </h2>
+        <ul>
+          <% @building.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+          <% end %>
+        </ul>
+  <% end %>
+
+  <%= f.fields_for :employees, @company.employees.build do |employee_fields| %>
+    <%= employee_fields.label :name %>
+    <%= employee_fields.text_field :name %>
+    <%= employee_fields.label :title %>
+    <%= employee_fields.text_field :title %>
+  <% end %>
+  <%= f.submit "Add employee" %>
+<% end %>

@@ -1,0 +1,22 @@
+<h1> <%= @company.name %> </h1>
+
+<h3>The total rent paid by <%= @company.name %> is: £<%= @company.total_rent %>. </h3>
+<ul>
+  <h3> <%= @company.name %> has offices in the following buildings:</h3>
+    <% @company.offices.each do |office| %>
+      <li> <%= link_to office.building.name, building_path(office.building) %>, floor <%= office.floor %> </li>
+    <% end %>
+</ul>
+
+
+
+<ul>
+  <h3> <%= @company.name %> has the following employees:</h3>
+  <% @company.employees.each do |employee| %>
+    <li> <%= employee.name %> | <%= employee.title %>
+      <%= link_to "Delete employee", employee, method: :delete, data: {confirm: "Are you sure you want to permanently delete this employee?"} %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add an employee to #{@company.name}", edit_company_path(@company) %>
